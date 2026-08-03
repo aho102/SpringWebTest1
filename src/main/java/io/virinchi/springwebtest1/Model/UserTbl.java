@@ -1,0 +1,19 @@
+package io.virinchi.springwebtest1.Model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+@Entity //creates the table with provided name in database
+//UserTbl -> user_tbl
+@Data //provides all getter setter , constructure...
+public class UserTbl {
+    @Id // primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private int id;
+    private String username;
+            private String password;
+}
