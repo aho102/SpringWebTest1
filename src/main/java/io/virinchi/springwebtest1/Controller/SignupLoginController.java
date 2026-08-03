@@ -29,4 +29,9 @@ public class SignupLoginController {
 
         return "loginPage";
     }
+
+    @PostMapping("/login")
+    public String LoginPost(){
+        return "home";
+    }
 }
