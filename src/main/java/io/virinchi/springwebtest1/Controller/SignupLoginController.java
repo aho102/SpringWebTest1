@@ -3,6 +3,7 @@ package io.virinchi.springwebtest1.Controller;
 import io.virinchi.springwebtest1.Model.UserTbl;
 import io.virinchi.springwebtest1.Repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,6 +61,15 @@ public class SignupLoginController {
       String hashPassword = DigestUtils.md5DigestAsHex(password.getBytes());
 
      if (uRepo.existsByUsernameAndPassword(username,hashPassword)){
+         HttpSession session = request.getSession();
+         // request bhaney ko http ko request ho
+         // session http ma bhanau ney
+         // check if the user has login or not
+
+         session.setAttribute("username" , username);
+         //yadi user ko password ra username miley ko xa bhaney usko  session ma euta attribute janxa
+         //session janxa until user logout
+
         return "home";
      }
 
