@@ -12,4 +12,9 @@ public class AllController {
 public String firstPage(){ //function name can be anything
     return "firstPage.html";
 }
+
+@GetMapping("/home")
+    public String homeGet(){
+        return "home.html";
+}
 }
