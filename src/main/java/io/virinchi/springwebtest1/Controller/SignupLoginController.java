@@ -39,7 +39,7 @@ public class SignupLoginController {
         //md5 algorithn, this is basic algorithm anyone can hack it
         //we will learn decrypt technique very soon
 
-        UserTbl user = new UserTbl();
+        UserTbl user = new UserTbl(); //object
         user.setUsername(username);
         user.setPassword(hashPassword);
 
