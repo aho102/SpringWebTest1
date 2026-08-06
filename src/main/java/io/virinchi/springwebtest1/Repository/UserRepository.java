@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserTbl,Integer> {  //jparepository is the superclass of curd-> curd function haru
 
+    //Custom function however, notice that existsBy Function is provided by repo itself
+    Boolean existsByUsernameAndPassword(String username, String password);
 }
