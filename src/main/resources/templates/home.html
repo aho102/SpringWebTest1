@@ -5,8 +5,38 @@
     <title>Home</title>
 </head>
 <body>
-<div th:insert = "navbar.html"></div> 
-<h4>Welcome to home page</h4>
+<div th:insert="navbar.html"></div>
+<h4>Welcome to home page.</h4>
 
+<table class="table">
+    <tr>
+        <td> Id </td>
+        <td> Username </td>
+        <td> Edit this User </td>
+        <td> Delete this User </td>
+    </tr>
+    <tr th:each="user:${totalUsers}"> <!-- totalUsers is the attribute that came from session layer
+    if it was from session model no need to write session - as it throw only in thata page
+    : -> each loop
+
+    thymleaf is used so th:text...
+    !-->
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getUsername()}"></td>
+        <td>
+            <form method="post" action="editUser">
+                <input type="hidden" th:value="${user.getId()}" name="id">
+                <input type="submit" value="Edit this user">
+            </form>
+        </td>
+        <td>
+            <form method="post" action="deleteUser"> <!-- deleteUser is the controller!-->
+                <input type="hidden" th:value="${user.getId()}" name="id"> <!-- user bata hidden hunxa  !-->
+            <input type="submit" value="Delete this user">
+
+            </form>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

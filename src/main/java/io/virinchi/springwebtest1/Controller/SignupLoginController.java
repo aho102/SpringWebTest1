@@ -11,8 +11,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Base64;
-
 @Controller
 public class SignupLoginController {
     @Autowired
@@ -69,7 +67,7 @@ public class SignupLoginController {
          session.setAttribute("username" , username);
          //yadi user ko password ra username miley ko xa bhaney usko  session ma euta attribute janxa
          //session janxa until user logout
-
+         m.addAttribute("totalUsers", uRepo.findAll()); // sabai user ko data liyera totalUsers ma rakhdeu // came from model
         return "home";
      }
 

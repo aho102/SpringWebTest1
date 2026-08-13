@@ -21,11 +21,11 @@
         <div class="col-right">
             <div class="login-form">
                 <h2>Login</h2>
-                <span style="color: red" th:text ="${error}"></span>
-
-                <form method="post" action="login">
+                <span style="color:green" th:text="${message}"></span>
+                <span style="color:red" th:text="${error}"></span>
+                <form action="login" method="post">
                     <p> <label>Username/Email address<span>*</span></label> <input type="text" placeholder="Username or Email" name="username" required> </p>
-                    <p> <label>Password<span>*</span></label> <input type="password" placeholder="Password"  name="password"required > </p>
+                    <p> <label>Password<span>*</span></label> <input type="password" placeholder="Password" name="password" required> </p>
                     <p> <input type="submit" value="Sign In"> </p>
                     <p> <a href="">Forgot password?</a> </p>
                 </form>
@@ -34,5 +34,4 @@
     </div>
 </div>
 </body>
-
 </html>
