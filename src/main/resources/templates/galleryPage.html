@@ -9,8 +9,13 @@
 <h2>This is a Galllery page</h2>
 
 <h4> Upload a Photo: </h4>
-<form method="post" action="galleryPost" enctype="multipart/form-data">
+<form method="post" action="galleryPost" enctype="multipart/form-data">  <!-- file choose garna ko lagi enctype chaixa(yo from ko data bata multi type file aairako xa bhaneyra bujxa) -->
     <input type="file" name="image">
+    <input type="submit" value="Upload" >
 </form>
+<h2>Images uploaded</h2>
+<span th:each="image:${totalImages}">
+    <img th:src="'data:image/jpeg;base64,'+ ${image.getImage()}">
+</span>
 </body>
 </html>

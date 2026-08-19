@@ -1,14 +1,17 @@
 package io.virinchi.springwebtest1.Model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
-public class ImgTable {
+@Data   //it makes automatically getter and setter from lombook
+public class VirImgTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
 
 //BLOB is used for image management
