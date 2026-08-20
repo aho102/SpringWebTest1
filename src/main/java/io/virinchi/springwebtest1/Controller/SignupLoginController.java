@@ -4,7 +4,10 @@ import io.virinchi.springwebtest1.Model.UserTbl;
 import io.virinchi.springwebtest1.Repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
@@ -12,10 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class SignupLoginController {
-    @Autowired
+
+    private final JavaMailSender jms;
+
+
     // only necessary function are taken and hides unwanted function
-    private UserRepository uRepo; // making object of UserRepository(interface) // this object is use for database
+    private final  UserRepository uRepo; // making object of UserRepository(interface) // this object is use for database
     @GetMapping("/signup")
     public String signup() {
         return "signupPage";
@@ -32,6 +39,7 @@ public class SignupLoginController {
         //request.getParameter("username") name? -> Intellij -> form name
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String email = request.getParameter("email");
 
         // post mapping of signup ma yesko kaam bhairako xa
         String hashPassword = DigestUtils.md5DigestAsHex(password.getBytes());
@@ -45,6 +53,15 @@ public class SignupLoginController {
         uRepo.save(user);
         // save -> curd relation
         //one row at a time
+
+        //mail sender
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("signup successful");
+
+        message.setText("Congratuation you have successfully signed up !! Welcome :" + username);
+
+        jms.send(message);
 
 
         return "loginPage";
